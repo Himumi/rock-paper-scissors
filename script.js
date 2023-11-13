@@ -14,10 +14,11 @@ const getComputerChoice = () => {
     return result;
 };
 
-const playerSelection = prompt("Enter Rock, Paper, or Scissors", "");
-const computerSelection = getComputerChoice();
 
-function playRound(playerSelection, computerSelection) {
+
+function playRound() {
+    const playerSelection = prompt("Enter Rock, Paper, or Scissors", "");
+    const computerSelection = getComputerChoice();
     let result;
 
     if (playerSelection === computerSelection) {
@@ -45,4 +46,10 @@ function playRound(playerSelection, computerSelection) {
     return result;
 }
 
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    for (let i = 0; i < 5; i++) {
+     console.log(playRound());
+    }
+}
+
+game();
