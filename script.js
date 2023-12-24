@@ -65,9 +65,12 @@ function game() {
 // });
 
 const playerSelection = document.querySelectorAll('button');
-
+const resultDiv = document.querySelector('#result');
+const makeDiv = document.createElement('div');
 playerSelection.forEach(players =>  {
     players.addEventListener('click', () => {
         console.log(playRound(players.value, getComputerChoice()));
+        makeDiv.textContent = playRound(players.value, getComputerChoice());
+        resultDiv.appendChild(makeDiv);
     });
 });
