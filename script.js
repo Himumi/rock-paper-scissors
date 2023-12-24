@@ -14,29 +14,25 @@ const getComputerChoice = () => {
     return result;
 };
 
-
-
-function playRound() {
-    const playerSelection = prompt("Enter Rock, Paper, or Scissors",).toLowerCase();
-    const computerSelection = getComputerChoice();
+function playRound(player, computer) {
     let result;
 
-    if (playerSelection === computerSelection) {
+    if (player === computer) {
         result = "The result is a draw!";
-    } else if (playerSelection === "rock") {
-        if (computerSelection === "scissors") {
+    } else if (player === "rock") {
+        if (computer === "scissors") {
             result = "You win! Rock beats Scissors.";
         } else {
             result = "You lose! Paper beats Rock.";
         }
-    } else if (playerSelection === "paper") {
-        if (computerSelection === "rock") {
+    } else if (player === "paper") {
+        if (computer === "rock") {
             result = "You Win! Paper beats Rock.";
         } else {
             result = "You lose! Scissors beats Paper.";
         }
-    } else if (playerSelection === "scissors") {
-        if (computerSelection === "paper") {
+    } else if (player === "scissors") {
+        if (computer === "paper") {
             result = "You win! Scissors beats Paper.";
         } else {
             result = "You lose! Rock beats Scissors.";
@@ -52,4 +48,26 @@ function game() {
     }
 }
 
-game();
+// const rock = document.querySelector('#rock');
+// const paper = document.querySelector("#paper");
+// const scissors = document.querySelector("#scissors");
+
+// rock.addEventListener('click', () => {
+//     console.log(playRound(rock.value, getComputerChoice()));
+// });
+
+// paper.addEventListener('click', () => {
+//     console.log(playRound(paper.value, getComputerChoice()));
+// });
+
+// scissors.addEventListener('click', () => {
+//     console.log(playRound(scissors.value, getComputerChoice()));
+// });
+
+const playerSelection = document.querySelectorAll('button');
+
+playerSelection.forEach(players =>  {
+    players.addEventListener('click', () => {
+        console.log(playRound(players.value, getComputerChoice()));
+    });
+});
