@@ -48,6 +48,25 @@ function game() {
     }
 }
 
+function checkResultUser(value) {
+    if (value.includes("draw")) {
+        return 1;
+    } else if (value.includes("Win")) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+function checkResultComputer(value) {
+    if (value.includes("draw")) {
+        return 1;
+    } else if (value.includes("Win")) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
 // const rock = document.querySelector('#rock');
 // const paper = document.querySelector("#paper");
 // const scissors = document.querySelector("#scissors");
@@ -67,10 +86,39 @@ function game() {
 const playerSelection = document.querySelectorAll('button');
 const resultDiv = document.querySelector('#result');
 const makeDiv = document.createElement('div');
+let i = 0;
+let valuesForUser = [];
+let valuesForComputer = [];
 playerSelection.forEach(players =>  {
+    
     players.addEventListener('click', () => {
-        console.log(playRound(players.value, getComputerChoice()));
-        makeDiv.textContent = playRound(players.value, getComputerChoice());
-        resultDiv.appendChild(makeDiv);
+        
+        if (i < 5) {
+            const result = playRound(players.value, getComputerChoice());
+            makeDiv.textContent = result;
+            resultDiv.appendChild(makeDiv);
+            valuesForUser.push(checkResultUser(result));
+            valuesForComputer.push(checkResultComputer(result));
+            i++;
+
+            console.log(result);
+            console.log(valuesForUser);
+            console.log(valuesForComputer);
+        }
+        console.log("It has five rounded.");
+        let userTotal = valuesForUser.reduce((accumulator, currentValue) =>{
+            return accumulator += currentValue;
+        },0);
+        let computerTotal = valuesForComputer.reduce((accumulator, currentValue) => {
+            return accumulator += currentValue;
+        },0);
+
+        if (userTotal > computerTotal) {
+            makeDiv.textContent = "The final winner is You!";
+            console.log("You Won!");
+        } else {
+            makeDiv.textContent = "The final winner is Computer!";
+            console.log("You Lost!")
+        }
     });
 });
